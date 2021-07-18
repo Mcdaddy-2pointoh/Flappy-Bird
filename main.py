@@ -10,6 +10,29 @@ screen = pg.display.set_mode((288, 512))
 # Clock and screen rate management
 clock = pg.time.Clock()
 
+# Font
+game_font = pg.font.Font("./Font/04B_19.TTF", 40)
+game_font_small = pg.font.Font("./Font/04B_19.TTF", 25)
+
+
+def score_disp(game_state):
+
+    if game_state == 'game_on':
+        score_surface = game_font.render("Score " + str(int(score)), True, (255, 255, 255))
+        score_obj = score_surface.get_rect(center=(144, 50))
+        screen.blit(score_surface, score_obj)
+
+    elif game_state == 'game_over':
+        score_surface = game_font.render("Score " + str(int(score)), True, (255, 255, 255))
+        score_obj = score_surface.get_rect(center=(144, 50))
+        screen.blit(score_surface, score_obj)
+
+        high_score_surface = game_font.render("High Score " + str(int(high_score)), True, (255, 255, 255))
+        high_score_obj = high_score_surface.get_rect(center=(144, 90))
+        screen.blit(high_score_surface, high_score_obj)
+
+
+
 # Background Image
 bg = pg.image.load("./Images/bg.png").convert()
 
@@ -156,6 +179,13 @@ while True:
         bird_obj.centery += bird_movement
         rotated_bird = rotate_bird(bird_center)
         bird_disp(rotated_bird)
+
+        # Displays score on the screen
+        score += 0.0075
+        score_disp('game_on')
+
+    else:
+        score_disp('game_over')
 
     # Displays base on the screen
     if base_x_position < - 288:
