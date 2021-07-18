@@ -23,13 +23,6 @@ def base_disp():
     screen.blit(base, (base_x_position, 450))
 
 
-# Game Font
-game_font = pg.font.Font("04B_19.ttf", 40)
-
-
-def score_display():
-    score_obj = game_font.render('Test')
-
 # Bird
 bird_mid = pg.image.load("./Images/bird2.png").convert_alpha()
 bird_up = pg.image.load("./Images/bird3.png").convert_alpha()
