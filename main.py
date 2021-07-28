@@ -32,9 +32,9 @@ def score_disp(game_state):
         screen.blit(high_score_surface, high_score_obj)
 
 
-
 # Background Image
 bg = pg.image.load("./Images/bg.png").convert()
+
 
 # Base
 base = pg.image.load("./Images/base.png").convert()
@@ -92,6 +92,7 @@ def create_pipe():
 def move_pipes(pipes):
     for p in pipes:
         p.centerx -= 1.50
+
     return pipes
 
 
@@ -148,6 +149,7 @@ while True:
                 pipe_list.clear()
                 bird_obj = bird_center.get_rect(center=(48, 256))
                 bird_movement = 0
+                score = 0
 
         # To generate pipe SPAWN
         if event.type == SPAWNPIPE:
@@ -181,7 +183,6 @@ while True:
         bird_disp(rotated_bird)
 
         # Displays score on the screen
-        score += 0.0075
         score_disp('game_on')
 
     else:
